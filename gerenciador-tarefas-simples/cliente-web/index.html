@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Gerenciador de Tarefas Simples</h1>
+        <nav>
+            <button onclick="showSection('criar-tarefa')">Criar Tarefa</button>
+            <button onclick="showSection('listar-tarefas')">Listar Tarefas</button>
+            <button onclick="showSection('configuracoes')">Configurações (SOAP)</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="criar-tarefa" class="active">
+            <h2>Criar Nova Tarefa</h2>
+            <form id="form-criar-tarefa">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" required><br>
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao"></textarea><br>
+                <button type="submit">Adicionar Tarefa</button>
+            </form>
+        </section>
+
+        <section id="listar-tarefas">
+            <h2>Minhas Tarefas</h2>
+            <ul id="lista-tarefas"></ul>
+            <p id="sem-tarefas-msg" style="display: none;">Nenhuma tarefa encontrada.</p>
+        </section>
+
+        <section id="configuracoes">
+            <h2>Configurações do Usuário (SOAP via Gateway)</h2>
+            <p>O cliente Web acessa o serviço SOAP via Gateway. O Gateway atuará como um proxy.</p>
+            <form id="form-config-usuario">
+                <label for="config-user-id">ID do Usuário:</label>
+                <input type="text" id="config-user-id" value="user1" required><br>
+                <label for="cor-preferencial">Cor Preferencial:</label>
+                <input type="text" id="cor-preferencial" placeholder="Ex: azul, verde" required><br>
+                <button type="button" onclick="getCorPreferencialWeb()">Obter Cor</button>
+                <button type="submit">Definir Cor</button>
+            </form>
+            <p id="cor-preferencial-resultado"></p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

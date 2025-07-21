@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://example.com/configuracoes"
+            targetNamespace="http://example.com/configuracoes"
+            elementFormDefault="qualified">
+
+    <xsd:complexType name="UserConfig">
+        <xsd:sequence>
+            <xsd:element name="userId" type="xsd:string"/>
+            <xsd:element name="corPreferencial" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="getCorPreferencial">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="userId" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getCorPreferencialResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="return" type="tns:UserConfig"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="setCorPreferencial">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="userConfig" type="tns:UserConfig"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="setCorPreferencialResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="return" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
