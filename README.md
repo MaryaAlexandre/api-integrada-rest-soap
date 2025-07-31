@@ -91,3 +91,14 @@ cd cliente-soap-python
 pip install zeep         # Instala a biblioteca necessária, se ainda não tiver
 python3 client.py        # ou python client.py dependendo do ambiente
 
+
+
+
+## 🎥 Apresentação Visual
+
+Você pode visualizar os slides de apresentação do projeto no Canva através do link abaixo:
+
+🔗 [Clique aqui para acessar os slides no Canva](https://www.canva.com/design/DAGutKVvEsM/_3rMkw3LxQK7M8yDv7O92A/view?utm_content=DAGutKVvEsM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hd3f550520e)
+
+> A apresentação resume a arquitetura, os objetivos, tecnologias utilizadas e e
+
