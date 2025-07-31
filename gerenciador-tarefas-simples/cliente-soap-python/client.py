@@ -1,20 +1,16 @@
 from zeep import Client, Settings
 import logging
 
-# Opcional: Ativar logs para ver as requisições SOAP detalhadas
+
 logging.basicConfig(level=logging.DEBUG)
 logging.getLogger('zeep.transports').setLevel(logging.DEBUG)
 
-# URL do WSDL do serviço SOAP (servico-config-usuario, rodando na porta 8081)
-# IMPORTANTE: Este cliente acessa o serviço SOAP diretamente na sua porta.
-# Ele NÃO passa pelo Gateway.
+
 wsdl_url = 'http://localhost:8081/ws/UserConfigService?wsdl'
 
 print(f"--- Tentando conectar ao WSDL em: {wsdl_url} ---")
 
 try:
-    # Configurações para o Zeep. 'strict=False' pode ajudar em ambientes de desenvolvimento
-    # com WSDLs gerados automaticamente que podem ter pequenos desvios da especificação estrita.
     settings = Settings(strict=False, xml_huge_tree=True)
     client = Client(wsdl=wsdl_url, settings=settings)
 
@@ -38,14 +34,11 @@ try:
     print("\n--- Testando 'setCorPreferencial' para user3 ---")
     user_id_set = "user3"
     nova_cor = "roxo"
-
-    # Criar um objeto UserConfig usando o tipo gerado pelo Zeep a partir do WSDL
-    # 'ns0' é o prefixo do namespace do schema no WSDL (verifique seu WSDL para confirmar)
     UserConfigType = client.get_type('ns0:UserConfig')
     nova_config = UserConfigType(userId=user_id_set, corPreferencial=nova_cor)
 
     try:
-        # Passamos o objeto Python que o Zeep serializará para XML SOAP
+
         resposta_set = client.service.setCorPreferencial(userConfig=nova_config)
         print(f"Resposta ao definir configuração para '{user_id_set}': {resposta_set}")
     except Exception as e:
