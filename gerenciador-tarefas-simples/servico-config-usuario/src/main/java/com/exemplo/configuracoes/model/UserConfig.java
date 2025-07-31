@@ -1,18 +1,19 @@
 package com.exemplo.configuracoes.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "UserConfig", propOrder = {
     "userId",
     "corPreferencial"
 })
-@XmlRootElement(namespace = "http://example.com/configuracoes") // Importante: namespace igual ao do XSD e Service
+@XmlRootElement(namespace = "http://example.com/configuracoes")
 public class UserConfig {
+
     @XmlElement(required = true)
     protected String userId;
     @XmlElement(required = true)

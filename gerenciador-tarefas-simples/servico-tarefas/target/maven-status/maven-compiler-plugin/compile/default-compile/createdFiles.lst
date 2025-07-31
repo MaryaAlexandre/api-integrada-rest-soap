@@ -1,0 +1,4 @@
+com\exemplo\tarefas\controller\TarefaController.class
+com\exemplo\tarefas\repository\TarefaRepository.class
+com\exemplo\tarefas\model\Tarefa.class
+com\exemplo\tarefas\TarefasApplication.class

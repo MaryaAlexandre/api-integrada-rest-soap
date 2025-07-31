@@ -1,0 +1,5 @@
+com\exemplo\configuracoes\model\UserConfig.class
+com\exemplo\configuracoes\service\UserConfigServiceImpl.class
+com\exemplo\configuracoes\config\WebServiceConfig.class
+com\exemplo\configuracoes\ConfiguracoesApplication.class
+com\exemplo\configuracoes\service\UserConfigService.class

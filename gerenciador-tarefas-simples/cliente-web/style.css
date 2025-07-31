@@ -1,116 +1,262 @@
+:root {
+    --bg-color: #0d1117;
+    --card-color: rgba(22, 27, 34, 0.7); /* Efeito de vidro mais escuro */
+    --border-color: rgba(255, 255, 255, 0.15);
+    --primary-color: #58a6ff; /* Azul vibrante como destaque */
+    --font-color: #c9d1d9;
+    --font-color-secondary: #8b949e;
+    --success-color: #3fb950;
+    --warning-color: #d29922;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    min-height: 100vh;
+    overflow: hidden;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-    margin-bottom: 20px;
+.background-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
-nav button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin: 0 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.5;
 }
 
-nav button:hover {
-    background-color: #0056b3;
+.shape1 {
+    width: 350px;
+    height: 350px;
+    background-color: var(--primary-color); /* Gradiente removido */
+    top: -150px;
+    left: -150px;
 }
 
-main {
-    background-color: white;
+.shape2 {
+    width: 250px;
+    height: 250px;
+    background-color: #30363d; /* Gradiente removido */
+    bottom: -100px;
+    right: -100px;
+}
+
+.app-layout {
+    display: flex;
+    height: 100vh;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin: auto;
 }
 
-section {
+.sidebar, .card {
+    background: var(--card-color);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+}
+
+.sidebar {
+    width: 260px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sidebar-header h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.nav-button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--font-color-secondary);
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-button .icon {
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+.nav-button:hover {
+    background-color: rgba(88, 166, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.nav-button.active {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 0 40px;
+    overflow-y: auto;
+}
+
+.content-section {
     display: none;
-    margin-bottom: 20px;
 }
 
-section.active {
+.content-section.active {
     display: block;
+    /* ANIMAÇÃO DE TRANSIÇÃO ADICIONADA AQUI */
+    animation: fadeInUp 0.5s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.section-description {
+    font-size: 1rem;
+    color: var(--font-color-secondary);
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+.card {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
 }
 
 form label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--font-color-secondary);
 }
 
 form input[type="text"],
 form textarea {
-    width: calc(100% - 20px);
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    width: 100%;
+    padding: 12px;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    color: var(--font-color);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+form input[type="text"]:focus,
+form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+form textarea {
+    min-height: 120px;
+    resize: vertical;
 }
 
 form button {
-    background-color: #28a745;
-    color: white;
+    background-color: var(--primary-color); /* Gradiente removido */
+    color: #ffffff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    margin-right: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 form button:hover {
-    background-color: #218838;
+    background-color: #4c8fef; /* Tom de azul mais claro no hover */
+    transform: translateY(-2px);
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+}
+
+.button-group .btn-secondary {
+    background: #30363d;
+}
+.button-group .btn-secondary:hover {
+    background: #484f58;
+}
+
+.form-result {
+    margin-top: 20px;
+    font-weight: 500;
 }
 
 ul {
     list-style: none;
-    padding: 0;
 }
 
 li {
-    background-color: #e9ecef;
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: rgba(36, 41, 47, 0.5);
+    border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-li .status-concluida {
-    color: green;
-    font-weight: bold;
+.status-concluida {
+    color: var(--success-color);
+    font-weight: 500;
 }
 
-li .status-pendente {
-    color: orange;
-    font-weight: bold;
+.status-pendente {
+    color: var(--warning-color);
+    font-weight: 500;
 }
 
 li button {
-    background-color: #ffc107;
-    color: #333;
+    background-color: var(--success-color);
+    color: #ffffff;
     border: none;
     padding: 5px 10px;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
-}
-
-li button:hover {
-    background-color: #e0a800;
+    font-weight: 600;
+    font-size: 0.9rem;
 }

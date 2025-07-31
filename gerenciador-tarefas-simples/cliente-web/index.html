@@ -4,51 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciador de Tarefas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Gerenciador de Tarefas Simples</h1>
-        <nav>
-            <button onclick="showSection('criar-tarefa')">Criar Tarefa</button>
-            <button onclick="showSection('listar-tarefas')">Listar Tarefas</button>
-            <button onclick="showSection('configuracoes')">Configurações (SOAP)</button>
-        </nav>
-    </header>
+    <div class="background-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+    </div>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <h2>Menu</h2>
+            </header>
+            <nav>
+                <button class="nav-button active" onclick="showSection('criar-tarefa')">
+                    <span class="icon">&#43;</span> Criar Tarefa
+                </button>
+                <button class="nav-button" onclick="showSection('listar-tarefas')">
+                    <span class="icon">&#9776;</span> Listar Tarefas
+                </button>
+                <button class="nav-button" onclick="showSection('configuracoes')">
+                    <span class="icon">&#9881;</span> Configurações
+                </button>
+            </nav>
+        </aside>
 
-    <main>
-        <section id="criar-tarefa" class="active">
-            <h2>Criar Nova Tarefa</h2>
-            <form id="form-criar-tarefa">
-                <label for="titulo">Título:</label>
-                <input type="text" id="titulo" required><br>
-                <label for="descricao">Descrição:</label>
-                <textarea id="descricao"></textarea><br>
-                <button type="submit">Adicionar Tarefa</button>
-            </form>
-        </section>
+        <main class="main-content">
+            <section id="criar-tarefa" class="content-section active">
+                <h1>Criar Nova Tarefa</h1>
+                <p class="section-description">Preencha os detalhes abaixo para adicionar uma nova tarefa à sua lista.</p>
+                <form id="form-criar-tarefa" class="card">
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input type="text" id="titulo" placeholder="Ex: Finalizar relatório mensal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <textarea id="descricao" placeholder="Ex: Compilar dados de vendas e preparar apresentação"></textarea>
+                    </div>
+                    <button type="submit">Adicionar Tarefa</button>
+                </form>
+            </section>
 
-        <section id="listar-tarefas">
-            <h2>Minhas Tarefas</h2>
-            <ul id="lista-tarefas"></ul>
-            <p id="sem-tarefas-msg" style="display: none;">Nenhuma tarefa encontrada.</p>
-        </section>
+            <section id="listar-tarefas" class="content-section">
+                <h1>Minhas Tarefas</h1>
+                <p class="section-description">Aqui está a sua lista de tarefas pendentes e concluídas.</p>
+                <div class="card">
+                    <ul id="lista-tarefas"></ul>
+                    <p id="sem-tarefas-msg" class="empty-state" style="display: none;">Você não tem nenhuma tarefa. Que tal criar uma?</p>
+                </div>
+            </section>
 
-        <section id="configuracoes">
-            <h2>Configurações do Usuário (SOAP via Gateway)</h2>
-            <p>O cliente Web acessa o serviço SOAP via Gateway. O Gateway atuará como um proxy.</p>
-            <form id="form-config-usuario">
-                <label for="config-user-id">ID do Usuário:</label>
-                <input type="text" id="config-user-id" value="user1" required><br>
-                <label for="cor-preferencial">Cor Preferencial:</label>
-                <input type="text" id="cor-preferencial" placeholder="Ex: azul, verde" required><br>
-                <button type="button" onclick="getCorPreferencialWeb()">Obter Cor</button>
-                <button type="submit">Definir Cor</button>
-            </form>
-            <p id="cor-preferencial-resultado"></p>
-        </section>
-    </main>
-
+            <section id="configuracoes" class="content-section">
+                <h1>Configurações do Usuário (SOAP)</h1>
+                <p class="section-description">Esta secção demonstra a integração com um serviço legado (SOAP) via Gateway.</p>
+                <form id="form-config-usuario" class="card">
+                     <div class="form-group">
+                        <label for="config-user-id">ID do Usuário</label>
+                        <input type="text" id="config-user-id" value="user1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cor-preferencial">Cor Preferencial</label>
+                        <input type="text" id="cor-preferencial" placeholder="Ex: azul, verde" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn-secondary" onclick="getCorPreferencialWeb()">Obter Cor</button>
+                        <button type="submit">Definir Cor</button>
+                    </div>
+                    <p id="cor-preferencial-resultado" class="form-result"></p>
+                </form>
+            </section>
+        </main>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
