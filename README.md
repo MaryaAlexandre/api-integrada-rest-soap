@@ -92,9 +92,8 @@ pip install zeep         # Instala a biblioteca necessária, se ainda não tiver
 python3 client.py        # ou python client.py dependendo do ambiente
 
 
-
-
-## 🎥 Apresentação Visual
+```
+## Apresentação Visual
 
 Você pode visualizar os slides de apresentação do projeto no Canva através do link abaixo:
 
