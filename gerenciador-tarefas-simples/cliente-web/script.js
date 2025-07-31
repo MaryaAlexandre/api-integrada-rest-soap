@@ -17,7 +17,7 @@ function showSection(id) {
     }
 }
 
-// --- Funções para o Serviço de Tarefas (REST via Gateway) ---
+
 document.getElementById('form-criar-tarefa').addEventListener('submit', async (e) => {
     e.preventDefault();
     const titulo = document.getElementById('titulo').value;
@@ -99,7 +99,7 @@ async function marcarTarefaConcluida(urlHateoas) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         alert('Tarefa marcada como concluída!');
-        carregarTarefas(); // Recarrega a lista para refletir a mudança
+        carregarTarefas(); 
     } catch (error) {
         console.error('Erro ao marcar tarefa como concluída:', error);
         alert('Erro ao marcar tarefa como concluída. Verifique o console.');
@@ -107,11 +107,9 @@ async function marcarTarefaConcluida(urlHateoas) {
 }
 
 
-// --- Funções para o Serviço de Configurações do Usuário (SOAP via Gateway) ---
-// NOTA: Acessar SOAP diretamente de um navegador é complexo devido ao XML e CORS.
-// Aqui, o Gateway está atuando como um proxy que redireciona a requisição (mas o cliente web ainda precisa enviar o XML SOAP)
-// Para simplificar para o cliente web, esta parte é mais demonstrativa do que funcionalmente "completa" sem transformações complexas no Gateway.
-// O cliente Python é quem fará a integração SOAP robusta.
+// Acessar SOAP diretamente de um navegador é complexo devido ao XML e CORS.
+// Aqui o Gateway está atuando como um proxy que redireciona a requisição (mas o cliente web ainda precisa enviar o XML SOAP)
+
 
 // Função para obter a cor preferencial (via Gateway que repassa para o SOAP)
 async function getCorPreferencialWeb() {
@@ -123,7 +121,6 @@ async function getCorPreferencialWeb() {
     // A URL completa do endpoint SOAP via Gateway é http://localhost:8080/soap/configuracoes/ws/UserConfigService
     const soapEndpoint = `${API_GATEWAY_URL}/soap/configuracoes/ws/UserConfigService`;
 
-    // Construindo o corpo da requisição SOAP manualmente (para simplicidade)
     const soapRequest = `<?xml version="1.0" encoding="utf-8"?>
         <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
             <soap:Body>
@@ -135,10 +132,10 @@ async function getCorPreferencialWeb() {
 
     try {
         const response = await fetch(soapEndpoint, {
-            method: 'POST', // Requisições SOAP são POST
+            method: 'POST',
             headers: {
-                'Content-Type': 'text/xml; charset=utf-8', // Tipo de conteúdo para SOAP
-                'SOAPAction': '""' // SOAPAction pode ser vazio ou ter o nome da operação
+                'Content-Type': 'text/xml; charset=utf-8', 
+                'SOAPAction': '""' 
             },
             body: soapRequest,
         });
@@ -150,10 +147,9 @@ async function getCorPreferencialWeb() {
         const textResponse = await response.text();
         console.log("Resposta SOAP bruta do Gateway (GET):", textResponse);
 
-        // Parsing simples do XML para extrair a cor
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(textResponse, "application/xml");
-        const corElement = xmlDoc.querySelector("return corPreferencial"); // Navegue pela estrutura de resposta SOAP
+        const corElement = xmlDoc.querySelector("return corPreferencial"); 
         const cor = corElement ? corElement.textContent : 'Não encontrada';
 
         resultadoParagrafo.textContent = `Cor Preferencial para ${userId}: ${cor}`;
@@ -164,7 +160,6 @@ async function getCorPreferencialWeb() {
     }
 }
 
-// Função para definir a cor preferencial (via Gateway que repassa para o SOAP)
 document.getElementById('form-config-usuario').addEventListener('submit', async (e) => {
     e.preventDefault();
     const userId = document.getElementById('config-user-id').value;
@@ -174,7 +169,6 @@ document.getElementById('form-config-usuario').addEventListener('submit', async 
 
     const soapEndpoint = `${API_GATEWAY_URL}/soap/configuracoes/ws/UserConfigService`;
 
-    // Construindo o corpo da requisição SOAP manualmente
     const soapRequest = `<?xml version="1.0" encoding="utf-8"?>
         <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
             <soap:Body>
